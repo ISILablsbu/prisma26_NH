@@ -1,0 +1,317 @@
+%% 
+%% Copyright 2007-2020 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+
+%\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times,authoryear]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+ \documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+
+% --- Fonts ---
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{carlito}
+
+% --- Core math ---
+\usepackage{amsmath,amssymb,amsfonts}
+
+% --- Tables ---
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{ragged2e}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+
+
+
+
+
+% --- Figures ---
+% graphicx is already loaded by elsarticle.cls, but keeping it once is fine
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}   % use this, and REMOVE subfigure
+
+% --- Layout / floats ---
+\usepackage{float}        % for [H]
+\usepackage{placeins}
+\usepackage{geometry}     % optional; keep only if you explicitly set margins
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{afterpage}
+\usepackage{adjustbox}
+
+% --- Text / symbols ---
+\usepackage{textcomp}
+\usepackage{pifont}
+\usepackage{bbding}
+\usepackage{wasysym}
+\usepackage[super]{nth}
+\usepackage{soul}         % highlighting
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=*}
+
+% --- Algorithms / code ---
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{minted}       % requires -shell-escape on Overleaf
+
+% --- Bibliography (elsarticle often loads natbib; keep only one) ---
+\usepackage[numbers]{natbib}
+
+% --- Optional utilities ---
+\usepackage{etoolbox}
+\usepackage{multicol}
+\usepackage{balance}      % or flushend, but usually not both
+% \usepackage{flushend}   % pick balance OR flushend, not both
+\usepackage[printwatermark]{xwatermark}
+
+% --- Color (load once) ---
+\usepackage[dvipsnames]{xcolor}
+\definecolor{mypink1}{rgb}{0.858, 0.188, 0.478}
+\definecolor{mypink2}{RGB}{219, 48, 122}
+\definecolor{mypink3}{cmyk}{0, 0.7808, 0.4429, 0.1412}
+\definecolor{mygray}{gray}{0.6}
+
+% --- Line numbers (only if you use it) ---
+\usepackage{lineno}
+\usepackage{ragged2e} % for \justifying
+
+% --- Hyperref MUST be late ---
+\usepackage[
+  bookmarks=true,
+  pdfpagelabels=true,
+  hyperfootnotes=true,
+  hyperindex=true,
+  pageanchor=true,
+  colorlinks=true
+]{hyperref}
+
+\hypersetup{
+  citecolor = cyan,
+  linkcolor = cyan,
+  urlcolor  = cyan
+}
+
+\renewcommand{\dblfloatpagefraction}{0.8}
+
+ 
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%% Packages from Old template End %%%%%%%%%%%%
+
+%% You might want to define your own abbreviated commands for common used terms, e.g.:
+%\newcommand{\kms}{km\,s$^{-1}$}
+%\newcommand{\msun}{$M_\odot}
+
+\journal{SME Journal of Manufacturing Systems}
+
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \affiliation for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%            addressline={}, 
+%%            city={},
+%%            postcode={}, 
+%%            state={},
+%%            country={}}
+%% \fntext[label3]{}
+
+\title{\textbf{A PRISMA Systematic Review of AI-Augmented Spatial Augmented Reality Systems for Manual Assembly in Operator 5.0 and Industry 5.0 Contexts}}
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \affiliation[label1]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%%
+%% \affiliation[label2]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+
+\author[first]{Naimul Hasan} \author[second]{Bugra Alkan}
+\affiliation[first, second]{organization={Human-Centred Industrial Intelligence Lab, School of Computer Science and Digital Technologies, London South Bank University},%Department and Organization
+            addressline={103 Borough Road}, 
+            city={London},
+            postcode={SE1 0AA}, 
+            country={United Kingdom}}
+
+
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+\appendix
+
+\section{Database Search Strategy}
+\label{appendixA}
+
+
+
+{
+\small % Apply small font to the table content
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{5pt}
+
+% Define the longtable structure
+\begin{longtable}{|p{1.1cm}|p{15cm}|p{1cm}|}
+
+% --- CAPTION ---
+\caption{Database-specific search strings and retrieval results prior to deduplication.}
+\label{tab:search_strategy}\\
+
+% --- FIRST PAGE HEADER ---
+\hline
+\textbf{Database Name} & \textbf{Search String} & \textbf{\# Results} \\
+\hline
+\endfirsthead
+
+% --- SUBSEQUENT PAGE HEADER ---
+\hline
+\textbf{Database Name} & \textbf{Search String} & \textbf{\# Results} \\
+\hline
+\endhead
+
+% --- PAGE FOOTER (Indicates continuation) ---
+\hline
+\multicolumn{3}{r}{\textit{Continued on next page}} \\
+\hline
+\endfoot
+
+% --- LAST PAGE FOOTER ---
+\hline
+\endlastfoot
+
+% --- CONTENT ---
+
+\textbf{IEEE Xplore} & 
+("spatial augmented reality" OR "projected augmented reality" OR "projected AR" 
+OR "non-wearable augmented reality" OR "projection-based AR" OR "AR projection system" 
+OR "instruction projection" OR "in-situ projection" OR "spatial AR" OR "SAR" OR "mixed reality") 
+AND (("manual assembly" OR "operator support" OR "operator assistance" OR "industrial assembly" 
+OR "task guidance" OR "manual task support" OR "assembly process" OR "assembly line" 
+OR "manual production" OR "manufacturing" OR "industrial manufacturing" OR "production task") 
+OR ("worker augmentation" OR "operator guidance" OR "interactive guidance" OR "assembly instruction" 
+OR "worker assistance" OR "maintenance" OR "training" OR "inspection guidance" OR "inspection" 
+OR "quality assurance" OR "pick-by-light" OR "pick-by-vision")) 
+AND (("computer vision" OR "gesture tracking" OR "gesture recognition" OR "hand gesture" 
+OR "hand tracking" OR "object tracking" OR "pose estimation" OR "viewpoint" OR "calibration" 
+OR "gaze" OR "vision-based tracking" OR "mid-air gesture" OR "touchless interaction" 
+OR "gesture-based control" OR "multimodal interaction" OR "EEG" OR "EEG-based workload assessment") 
+OR ("brain-computer interface" OR "cognitive load estimation" OR "neuroergonomics" 
+OR "cognitive ergonomics" OR "mental effort" OR "cognitive state" OR "adaptive interface" 
+OR "adaptive user interface" OR "context-aware interface" OR "adaptive instruction system" 
+OR "system usability scale" OR "usability" OR "real-time feedback loop" 
+OR "closed-loop interaction" OR "occlusion handling" OR "occlusion-aware") 
+OR ("reinforcement learning interface" OR "human-in-the-loop" OR "human-centric automation" 
+OR "smart operator" OR "future manufacturing" OR "SAR navigation" OR "quality control")) 
+NOT ("synthetic aperture radar" OR "successive approximation radar") 
+& 702 \\
+\hline
+
+\textbf{Scopus} &
+TITLE-ABS-KEY(("spatial augmented reality" OR "projected augmented reality" OR "projected AR" 
+OR "non-wearable augmented reality" OR "projection-based AR" OR "AR projection system" 
+OR "instruction projection" OR "in-situ projection" OR "spatial AR" OR "SAR" OR "mixed reality") 
+AND (("manual assembly" OR "operator support" OR "operator assistance" OR "industrial assembly" 
+OR "task guidance" OR "manual task support" OR "assembly process" OR "assembly line" 
+OR "manual production" OR "manufacturing" OR "industrial manufacturing" OR "production task") 
+OR ("worker augmentation" OR "operator guidance" OR "interactive guidance" OR "assembly instruction" 
+OR "worker assistance" OR "maintenance" OR "training" OR "inspection guidance" OR "inspection" 
+OR "quality assurance" OR "pick-by-light" OR "pick-by-vision")) 
+AND (("computer vision" OR "gesture tracking" OR "gesture recognition" OR "hand gesture" 
+OR "hand tracking" OR "object tracking" OR "pose estimation" OR "viewpoint" OR "calibration" 
+OR "gaze" OR "vision-based tracking" OR "mid-air gesture" OR "touchless interaction" 
+OR "gesture-based control" OR "multimodal interaction" OR "EEG" OR "EEG-based workload assessment") 
+OR ("brain-computer interface" OR "cognitive load estimation" OR "neuro ergonomics" 
+OR "cognitive ergonomics" OR "mental effort" OR "cognitive state" OR "adaptive interface" 
+OR "adaptive user interface" OR "context-aware interface" OR "adaptive instruction system" 
+OR "system usability scale" OR "usability" OR "real-time feedback loop" 
+OR "closed-loop interaction" OR "occlusion handling" OR "occlusion-aware") 
+OR ("reinforcement learning interface" OR "human-in-the-loop" OR "human-centric automation" 
+OR "smart operator" OR "future manufacturing" OR "SAR navigation" OR "quality control"))) 
+AND NOT TITLE-ABS-KEY ("synthetic aperture radar" OR "successive approximation radar") 
+AND PUBYEAR > 2014 AND PUBYEAR < 2026 
+AND (EXCLUDE (LANGUAGE, "Portuguese") OR EXCLUDE (LANGUAGE, "Russian") 
+OR EXCLUDE (LANGUAGE, "Spanish") OR EXCLUDE (LANGUAGE, "Japanese") 
+OR EXCLUDE (LANGUAGE, "Korean") OR EXCLUDE (LANGUAGE, "Chinese")) 
+AND (LIMIT-TO (SUBJAREA, "COMP") OR LIMIT-TO (SUBJAREA, "ENGI") 
+OR LIMIT-TO (SUBJAREA, "NEUR") OR LIMIT-TO (SUBJAREA, "PSYC"))
+& 547 \\
+\hline
+
+\textbf{ACM Digital Library} & (("spatial augmented reality" OR "projected augmented reality" OR "projected AR" OR "non-wearable augmented reality" OR "projection-based AR" OR "AR projection system" OR "instruction projection" OR "in-situ projection" OR "spatial AR" OR "SAR" OR "mixed reality") AND (("manual assembly" OR "operator support" OR "operator assistance" OR "industrial assembly" OR "task guidance" OR "manual task support" OR "assembly process" OR "assembly line" OR "manual production" OR "manufacturing" OR "industrial manufacturing" OR "production task") OR ("worker augmentation" OR "operator guidance" OR "interactive guidance" OR "assembly instruction" OR "worker assistance" OR "maintenance" OR "training" OR "inspection guidance" OR "inspection" OR "quality assurance" OR "pick-by-light" OR "pick-by-vision")) AND (("computer vision" OR "gesture tracking" OR "gesture recognition" OR "hand gesture" OR "hand tracking" OR "object tracking" OR "pose estimation" OR "viewpoint" OR "calibration" OR "gaze" OR "vision-based tracking" OR "mid-air gesture" OR "touchless interaction" OR "gesture-based control" OR "multimodal interaction" OR "EEG" OR "EEG-based workload assessment") OR ("brain-computer interface" OR "cognitive load estimation" OR "neuroergonomics" OR "cognitive ergonomics" OR "mental effort" OR "cognitive state" OR "adaptive interface" OR "adaptive user interface" OR "context-aware interface" OR "adaptive instruction system" OR "system usability scale" OR "usability" OR "real-time feedback loop" OR "closed-loop interaction" OR "occlusion handling" OR "occlusion-aware") OR ("reinforcement learning interface" OR "human-in-the-loop" OR "human-centric automation" OR "smart operator" OR "future manufacturing" OR "SAR navigation" OR "quality control")) AND NOT ("synthetic aperture radar" OR "successive approximation radar" )) & 2,748 \\
+\hline
+
+\textbf{Web of Science} & ("spatial augmented reality" OR "projected augmented reality" OR "projected AR" OR "non-wearable augmented reality" OR "projection based AR" OR "AR projection system" OR "instruction projection" OR "in-situ projection" OR "spatial AR") AND (("manual assembly" OR "operator support" OR "operator assistance"
+OR "industrial assembly" OR "task guidance" OR "manual task support" OR "assembly process" OR "assembly line" OR "manual production" OR "manufacturing" OR "industrial manufacturing" OR "production task") OR ("worker augmentation" OR "operator
+guidance" OR "interactive guidance" OR "assembly instruction" OR "worker assistance" OR "maintenance" OR "training" OR "inspection guidance" OR "inspection" OR "quality assurance" OR "pick-by-light" OR "pick-by-vision")) AND (("computer vision" OR "gesture tracking" OR "gesture recognition" OR "hand gesture" OR "hand tracking" OR
+"object tracking" OR "pose estimation" OR "viewpoint" OR "calibration" OR "gaze" OR "vision-based tracking" OR "mid-air gesture" OR "touchless interaction" OR "gesture-based control" OR "multimodal interaction" OR "EEG" OR "EEG-based workload
+assessment") OR ("brain-computer interface" OR "cognitive load estimation" OR "neuroergonomics" OR "cognitive ergonomics" OR "mental effort" OR "cognitive state" OR "adaptive interface" OR "adaptive user interface" OR "context-aware interface" OR "adaptive instruction system" OR "system usability scale" OR "usability" OR
+"real-time feedback loop" OR "closed-loop interaction" OR "occlusion handling" OR "occlusion-aware") OR ("reinforcement learning interface" OR "human-in-the-loop" OR "human-centric automation" OR "smart operator" OR "future manufacturing" OR "SAR navigation" OR "quality control")) NOT ("synthetic aperture radar") & 436 \\
+\hline
+
+\textbf{Springer NatureLink} & ("spatial augmented reality" OR "projected augmented reality" OR "projected AR" OR "non-wearable augmented reality" OR "projection-based AR" OR "AR projection system" OR "instruction projection" OR "in-situ projection" OR "spatial AR" OR "SAR" ) AND (("manual assembly" OR "operator support" OR "operator assistance" OR "industrial assembly" OR "task guidance" OR "manual task support" OR "assembly process" OR "assembly line" OR "manual production" OR "manufacturing" OR "industrial manufacturing" OR "production task") OR ("worker augmentation" OR "operator guidance" OR "interactive guidance" OR "assembly instruction" OR "worker assistance" OR "maintenance" OR "training" OR "inspection guidance" OR "inspection" OR "quality assurance" OR "pick-by-light")) AND (("computer vision" OR "gesture tracking" OR "gesture recognition" OR "hand gesture" OR "hand tracking" OR "object tracking" OR "pose estimation" OR "calibration" OR "gaze" OR "vision based tracking" OR "mid air gesture" OR "touchless interaction" OR "gesture based control" OR "multimodal interaction" OR "EEG" OR "EEG-based workload assessment") OR ("cognitive load estimation" OR "cognitive ergonomics" OR "mental effort" OR "cognitive state" OR "adaptive interface" OR "adaptive user interface" OR "context aware interface" OR "adaptive instruction system" OR "usability" OR "real time feedback loop" OR "closed loop interaction" OR "occlusion handling" OR "occlusion-aware") OR ("human-in-the-loop" OR "human-centric automation" OR "smart operator" OR "future manufacturing" OR  "quality control")) AND NOT ("synthetic aperture radar" OR "successive approximation radar") & 1,000 \\
+\hline
+
+\textbf{Google Scholar} & (("spatial augmented reality" OR "projected augmented reality" OR "projected AR" OR "non-wearable augmented reality" OR "projection-based AR" OR "AR projection system" OR "instruction projection" OR "in-situ projection" OR "spatial AR" ) AND (("manual assembly" OR "operator support" OR "operator assistance" OR "industrial assembly" OR "task guidance" OR "manual task support" OR "assembly process" OR "assembly line" OR "manual production" OR "manufacturing" OR "industrial manufacturing" OR "production task") OR ("worker augmentation" OR "operator guidance" OR "interactive guidance" OR "assembly instruction" OR "worker assistance" OR "maintenance" OR "training" OR "inspection guidance" OR "inspection" OR "quality assurance" OR "pick-by-light")) AND (("computer vision" OR "gesture tracking" OR "gesture recognition" OR "hand gesture" OR "hand tracking" OR "object tracking" OR "pose estimation" OR "calibration" OR "gaze" OR "vision based tracking" OR "mid air gesture" OR "touchless interaction" OR "gesture based control" OR "multimodal interaction" OR "EEG" OR "EEG-based workload assessment") OR ("cognitive load estimation" OR "cognitive ergonomics" OR "mental effort" OR "cognitive state" OR "adaptive interface" OR "adaptive user interface" OR "context aware interface" OR "adaptive instruction system" OR "usability" OR "real time feedback loop" OR "closed loop interaction" OR "occlusion handling" OR "occlusion-aware") OR ("human-in-the-loop" OR "human-centric automation" OR "smart operator" OR "future manufacturing" OR  "quality control")) & 699 \\
+\hline
+
+\end{longtable}
+}
+
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.
