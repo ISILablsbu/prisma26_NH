@@ -1,0 +1,819 @@
+%% 
+%% Copyright 2007-2020 Elsevier Ltd
+%% 
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%% 
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%% 
+%% The list of all files belonging to the 'Elsarticle Bundle' is
+%% given in the file `manifest.txt'.
+%% 
+%% Template article for Elsevier's document class `elsarticle'
+%% with harvard style bibliographic references
+
+%\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times,authoryear]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,authoryear]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn,authoryear]{elsarticle}
+%% \documentclass[final,5p,times,authoryear]{elsarticle}
+
+% Previous style with harvard ref
+% \documentclass[final,5p,twocolumn,authoryear]{elsarticle}
+% Current version with Numbering ref format
+\documentclass[final,5p,times,twocolumn,numbers,sort&compress]{elsarticle}
+ 
+\usepackage[T1]{fontenc}
+\usepackage{libertinus}
+\usepackage[libertinus]{newtxmath} % optional, if you want matching math
+
+% =========================
+% Core math
+% =========================
+\usepackage{amsmath,amssymb,amsfonts}
+
+% =========================
+% Tables
+% =========================
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{tabularx}     % keep only if you use X columns
+\usepackage{ragged2e}     % for \RaggedRight / \justifying
+
+\newcolumntype{Y}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{Z}{>{\RaggedRight\arraybackslash\hspace{0pt}}X} % wraps nicely in X
+
+ 
+\usepackage[none]{hyphenat} % optional, if you dislike hyphenation (remove if you want hyphenation)
+\usepackage{xurl}          % better URL breaks (safe even if no URLs)
+\usepackage{seqsplit}      % optional: can split long words when needed
+\usepackage{microtype}     % improves justification/spacing subtly
+\usepackage{makecell}      % easy manual line breaks in a cell
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+
+% =========================
+% Figures
+% =========================
+\usepackage{graphicx}     % elsarticle loads it, but harmless if repeated
+\usepackage{subcaption}   % use subcaption, DO NOT use subfigure
+\usepackage{caption}
+\captionsetup[longtable]{width=\textwidth}
+% =========================
+% Floats / layout helpers
+% =========================
+\usepackage{float}        % for [H]
+\usepackage{placeins}
+\usepackage{adjustbox}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{rotating}   % sidewaystable
+\usepackage{dblfloatfix} % helps placement of * floats in 2-col (recommended)
+
+% IMPORTANT: geometry often conflicts with elsarticle. Only enable if you set margins explicitly.
+% \usepackage[margin=1in]{geometry}
+
+% =========================
+% Text / symbols / lists
+% =========================
+\usepackage{textcomp}
+\usepackage{pifont}       % if you use \ding
+\usepackage[super]{nth}
+\usepackage{soul}         % highlighting
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=*, nosep}
+
+% =========================
+% Algorithms / code
+% =========================
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
+% Choose ONE code package. Prefer minted if you compile with -shell-escape.
+\usepackage{minted}
+% If you cannot use -shell-escape, comment minted and use listings instead:
+% \usepackage{listings}
+
+% =========================
+% Colours
+% =========================
+\usepackage[dvipsnames]{xcolor}
+\definecolor{mypink1}{rgb}{0.858, 0.188, 0.478}
+\definecolor{mypink2}{RGB}{219, 48, 122}
+\definecolor{mypink3}{cmyk}{0, 0.7808, 0.4429, 0.1412}
+\definecolor{mygray}{gray}{0.6}
+
+% =========================
+% Line numbers (optional)
+% =========================
+\usepackage{lineno}
+
+% =========================
+% Hyperref (must be late)
+% =========================
+\usepackage[
+  bookmarks=true,
+  pdfpagelabels=true,
+  hyperfootnotes=true,
+  hyperindex=true,
+  pageanchor=true,
+  colorlinks=true,
+  citecolor=cyan,
+  linkcolor=cyan,
+  urlcolor=cyan
+]{hyperref}
+
+
+\setcounter{topnumber}{5}
+\setcounter{bottomnumber}{5}
+\setcounter{totalnumber}{10}
+
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.9}
+\renewcommand{\dblfloatpagefraction}{0.9}
+
+% Elsevier float behaviour tweak (ok)
+\renewcommand{\dblfloatpagefraction}{0.8}
+
+%%%%%%%%%%%%%%%%%% Packages from Old template End %%%%%%%%%%%%
+
+%% You might want to define your own abbreviated commands for common used terms, e.g.:
+%\newcommand{\kms}{km\,s$^{-1}$}
+%\newcommand{\msun}{$M_\odot}
+
+\journal{SME Journal of Manufacturing Systems}
+
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for theassociated footnote;
+%% use the fnref command within \author or \affiliation for footnotes;
+%% use the fntext command for theassociated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for theassociated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \affiliation{organization={},
+%%            addressline={}, 
+%%            city={},
+%%            postcode={}, 
+%%            state={},
+%%            country={}}
+%% \fntext[label3]{}
+
+\title{\textbf{AI-Enabled Spatial Augmented Reality for Human-Centred Manual Assembly in Industry 5.0, A PRISMA Systematic Review of Sensing, Adaptation, and TRL}}
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{}
+%% \affiliation[label1]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+%%
+%% \affiliation[label2]{organization={},
+%%             addressline={},
+%%             city={},
+%%             postcode={},
+%%             state={},
+%%             country={}}
+
+\author[lsbu]{Naimul Hasan} \author[lsbu]{Bugra Alkan}
+
+\affiliation[lsbu]{organization={Human-Centred Industrial Intelligence Lab, School of Computer Science and Digital Technologies, London South Bank University},%Department and Organization
+            addressline={103 Borough Road}, 
+            city={London},
+            postcode={SE1 0AA}, 
+            country={United Kingdom}}
+
+
+%%Graphical abstract
+%\begin{graphicalabstract}
+%\includegraphics{grabs}
+%\end{graphicalabstract}
+
+%%Research highlights
+%\begin{highlights}
+%\item Research highlight 1
+%\item Research highlight 2
+%\end{highlights}
+
+\begin{keyword}
+%% keywords here, in the form: keyword \sep keyword, up to a maximum of 6 keywords
+Spatial Augmented Reality \sep Manual Assembly \sep Computer Vision\sep Operator 5.0\sep Gesture Recognition\sep Cognitive State Monitoring\sep Human-in-the-Loop\sep Industry 5.0
+
+
+
+%% PACS codes here, in the form: \PACS code \sep code
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+
+\end{frontmatter}
+
+
+\begingroup
+% \footnotesize
+\small
+\setlength{\bibsep}{0pt}
+\renewcommand{\baselinestretch}{0.97}\normalsize
+% \bibliographystyle{elsarticle-harv}
+\bibliographystyle{elsarticle-num}
+\bibliography{bibliography}
+\endgroup
+
+%%\end{thebibliography}
+
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+\appendix
+
+
+\section{Database Search Strategy}
+\label{appendixA}
+Search Strategy Table can be found at https://github.com/ISILablsbu/prisma26_NH/blob/main/searchStrategy.pdf
+
+\section{Appendix title 2}
+%% \label{}
+
+\begin{sidewaystable*}[p]
+\centering
+
+\caption{Extended Overview of SAR Studies with Adaptivity and Operator-Centric Factors (Part 1/4).}
+\label{tab:sar_literature}
+
+\begin{ThreePartTable}
+
+\scriptsize
+\setlength{\tabcolsep}{1.8pt}
+\renewcommand{\arraystretch}{1.15}
+
+\begin{tabularx}{\textheight}{@{}%
+  Y{1.7cm}   % Author
+  Y{1.3cm}   % Country
+  Z          % Domain (flex)
+  Y{1.5cm}   % Study Type
+  Z          % SAR Focus (flex)
+  Y{1.1cm}   % AI
+  Y{1.3cm}   % Cognitive Monitoring
+  Z          % Adaptivity (flex)
+  Y{0.9cm}   % Op 5.0
+  Y{1.1cm}   % NASA-TLX
+  Y{1.1cm}   % Maturity
+  Y{1.2cm}   % Gesture
+  Y{1.2cm}   % Occlusion
+  Z          % Product Type (flex)
+@{}}
+
+\toprule
+\textbf{Author (Year)} & \textbf{Country} & \textbf{Domain} & \textbf{Study Type} & \textbf{SAR Focus} &
+\textbf{AI} & \textbf{Cognitive Monitoring} & \textbf{Adaptivity} & \textbf{Op 5.0} &
+\textbf{NASA-TLX} & \textbf{Maturity} & \textbf{Gesture} & \textbf{Occlusion} & \textbf{Product Type} \\
+\midrule
+
+Büttner et al. (2015) \cite{buttnerExtendingDesignSpace2015} & Germany & Generic / unspecified & Prototype & Guidance / Instructions & Rule-based & None / Vision-only & Static & No & NR & Lab Prototype & No - Foot Pedal control & NR & LEGO sets \\
+
+Funk et al. (2015) \cite{funkUsingInSituProjection2015} & Germany & Generic / unspecified & Controlled Lab & Accessibility / Inclusion & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Lab Prototype & No - Pick task recog. & NR & LEGO Duplo \\
+
+Funk et al. (2015) \cite{funkPickHereInteractive2015} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Spatial-adaptive & No & 20.25 & Lab Prototype & No - Pick task recog. & NR & LEGO bricks \\
+
+Funk et al. (2015) \cite{funkComparingProjectedInsitu2015} & Germany & Generic / unspecified & Field Study & Guidance / Training & Rule-based & Subjective (self-report) & Process-adaptive & Aligned (Implicit) & 44 & Industrial Pilot & No - Pick task recog. & NR & Clamp \\
+
+Funk et al. (2015) \cite{funkCognitiveAssistanceWorkplace2015} & Germany & Automotive & Field Deployment & Quality / Monitoring & Rule-based & None / Vision-only & Process-adaptive & No & NR & Industrial Pilot & No - Task recog. & NR & Engine starter \\
+
+Funk et al. (2015) \cite{funkBenchmarkInteractiveAugmented2015} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 33.16 (workload) & Lab Prototype & No & NR & LEGO Duplo / Wood \\
+
+Büttner et al. (2016) \cite{buttnerUsingHeadMountedDisplays2016} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Static & No & NR & Lab Prototype & No & NR & LEGO sets \\
+
+Fiorentino et al. (2016) \cite{fiorentinoMagicMirrorInterface2016} & Italy & Automotive & Field Study & Guidance / Instructions & Rule-based & None / Vision-only & Static & No & NR & Field Study & Yes & Depth Separation & BMW Z4 \\
+
+Funk et al. (2016) \cite{funkMotionEAPOverview4} & Germany & Generic / unspecified & Field Studies & Guidance / Training & Rule-based & None / Vision-only & Process-adaptive & No & NR & Industrial Pilot & No - Activity recog. & NR & Auto parts \\
+
+Funk et al. (2016) \cite{funkMobileInSituPickbyVision2016} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Spatial-adaptive & No & 25.37 & Lab Prototype & No -Head Tracking & Hardware Avoidance & LEGO bricks \\
+
+Funk et al. (2016) \cite{funkHapticAuditoryVisual2016} & Germany & Generic / unspecified & Controlled Lab & Quality / Monitoring & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Pick task recog. & NR & LEGO Duplo \\
+
+Funk et al. (2016) \cite{funkInteractiveWorkerAssistance2016} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 28.13 & Lab Prototype & No - Task recog. & NR & LEGO Duplo \\
+
+Kosch et al. (2016) \cite{koschComparingTactileAuditory2016} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Lab Prototype & No - Pick task recog. & NR & LEGO Duplo \\
+
+Mura et al. (2016) \cite{muraIntegratedEnvironmentBased2016} & Italy & Generic / unspecified & Lab Prototype & Quality / Monitoring & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - weight sensor & NR & Assembly set \\
+
+Obinata et al. (2016) \cite{obinataPoseEstimationCuboid2016} & Japan & Generic / unspecified & Tech Validation & Guidance / Instructions & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & Hand removal algo. & PC / Box \\
+
+Sand et al. (2016) \cite{sandSmARtAssemblyProjectionBasedAugmented2016} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No - Foot Pedal control & NR & LEGO sets \\
+
+Xu et al. (2017) \cite{xuFastRegistrationMethodology2017} & China & Aerospace & Lab Exp & Guidance / Instructions & Machine Learning & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Aircraft Model \\
+
+Bosch et al. (2017) \cite{boschEffectsProjectedDisplay2017} & Netherlands & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 36.8 (workload) & Lab Prototype & No - Task recog. & NR & Abstract Task \\
+
+Büttner et al. (2017) \cite{buttnerExploringDesignOpportunities2017} & Germany & Automotive & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Process-adaptive & No & 31.5, 23.5 & Lab Prototype & Yes & NR & Belt Tensioner \\
+
+Funk et al. (2017) \cite{funkWorkingAugmentedReality2017} & Germany & Automotive & Field Study & Guidance / Instructions & Rule-based & Subjective (self-report) & Process-adaptive & No & 74.34 & Industrial Pilot & No - Pick task recog. & NR & Engine Starters \\
+
+Kosch et al. (2017) \cite{koschOneSizeDoes2017} & Germany & Automotive & Reflection & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Pilot & No & NR & Engine starter \\
+
+Blattgerste et al. (2018) \cite{blattgersteInSituInstructionsExceed2018} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 29.6 & Lab Prototype & No - Clicker & Occlusion aware & LEGO Duplo \\
+
+Funk et al. (2018) \cite{funkTeachMeHow2018} & Germany & Automotive & Field Study & Training & Rule-based & Subjective (self-report) & Process-adaptive & No & 15.62 & Industrial Pilot & Yes & NR & Engine starter \\
+
+Kosch et al. (2018) \cite{koschIdentifyingCognitiveAssistance2018} & Germany & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Physiological (EEG/EDA) & Static & No & 24.17 & Lab Prototype & No - Pick task recog. & NR & LEGO Duplo \\
+
+Mengoni et al. (2018) \cite{mengoniSpatialAugmentedReality2018} & Italy & Consumer Electronics & Controlled Lab & Human factors / Safety & Rule-based & Subjective (self-report) & Process-adaptive & Aligned (Implicit) & 26.17 & Lab Prototype & No & NR & Smartphone \\
+
+\bottomrule
+\end{tabularx}
+\end{ThreePartTable}
+\end{sidewaystable*}
+\clearpage
+
+\clearpage
+\begin{sidewaystable*}[p]
+\centering
+
+\caption{Extended Overview of SAR Studies with Adaptivity and Operator-Centric Factors (Part 2/4).}
+\label{tab:sar_literature_2}
+
+\begin{ThreePartTable}
+
+\scriptsize
+\setlength{\tabcolsep}{1.8pt}
+\renewcommand{\arraystretch}{1.15}
+
+\begin{tabularx}{\textheight}{@{}%
+  Y{1.7cm} Y{1.3cm} Z Y{1.5cm} Z Y{1.1cm} Y{1.3cm} Z Y{0.9cm} Y{1.1cm} Y{1.1cm} Y{1.2cm} Y{1.2cm} Z @{}}
+
+\toprule
+\textbf{Author (Year)} & \textbf{Country} & \textbf{Domain} & \textbf{Study Type} & \textbf{SAR Focus} &
+\textbf{AI} & \textbf{Cognitive Monitoring} & \textbf{Adaptivity} & \textbf{Op 5.0} &
+\textbf{NASA-TLX} & \textbf{Maturity} & \textbf{Gesture} & \textbf{Occlusion} & \textbf{Product Type} \\
+\midrule
+
+Simoes et al. (2018) \cite{simoesXRealitySystemArchitecture2018} & Spain & Electronics & Tech Validation & Guidance / Instructions & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Proof Concept & Yes & NR & Electrical Cabinet \\
+
+Uva et al. (2018) \cite{uvaEvaluatingEffectivenessSpatial2018}& Italy & Automotive & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Static & No & NR & Lab Prototype & No - Joystick & NR & Honda Engine \\
+
+Alves et al. (2019) \cite{alvesComparingSpatialMobile2019} & Portugal & Generic / unspecified & Controlled Lab & Quality / Monitoring & Rule-based & Subjective (self-report) & Process-adaptive & No & 20 & Lab Prototype & No -Wizard of oz & NR & Puzzle \\
+
+Costa et al. (2019) \cite{costaModelingVideoProjectors2019} & Portugal & Automotive & Tech Validation & Training & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Starter Motor \\
+
+Faccio et al. (2019) \cite{faccioRealtimeAssistanceManual2019} & Italy & Automotive & Controlled Lab & Quality / Monitoring & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Activity recog. & NR & Water pump \\
+
+Haslwanter et al. (2019) \cite{haslwanterLostTranslationMachine2019} & Austria & Generic / unspecified & Controlled Lab & Other & Machine Learning & None / Vision-only & Content-adaptive & Op 4.0 & NR & Lab Prototype & No - Button glove & NR & LEGO Duplo \\
+
+Kosch et al. (2019) \cite{koschYourSkinResists2019} & Germany & Generic / unspecified & Controlled Lab & Human factors / Safety & Rule-based & Physiological (EEG/EDA) & Static & No & NR & Lab Prototype & No - Task recog. & NR & LEGO Duplo \\
+
+Wang et al. (2019) \cite{wangGestureHeadbasedMultimodal2019} & China & Automotive & Controlled Lab & Remote collaboration & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & Yes & NR & Water pump \\
+
+Wilschut et al. (2019) \cite{wilschutEvaluatingLearningApproaches2019} & Netherlands & Industrial equipment & Controlled Lab & Training & Rule-based & Subjective (self-report) & Static & No & 28.1 & Lab Prototype & No - Pick Tracking & NR & Pneumatic \\
+
+Bosch et al. (2020) \cite{boschSpatialAugmentedReality2020} & Netherlands & Generic / unspecified & Field Study & Guidance / Training & Rule-based & Subjective (self-report) & Static & Op 4.0 & 31 & Industrial Pilot & No - Bin Picking & NR & Tooling \\
+
+Büttner et al. (2020) \cite{buttnerAugmentedRealityTraining2020} & Germany & Industrial equipment & Controlled Lab & Training & Rule-based & None / Vision-only & Static & No & NR & Lab Prototype & No - Wizard of oz & NR & Pneumatic \\
+
+Heinz et al. (2020) \cite{heinzExploringUsersEye2020} & Germany & Genric/unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Behavioural & Static & No & NR & Lab Prototype & Yes & NR & Toy Gearbox \\
+
+Horejsi et al. (2020) \cite{horejsiSmartFactorySmart2020} & Czech Republic & Generic / unspecified & Controlled Lab & Training & Rule-based & None / Vision-only & Static & No & NR & Industrial Pilot & No - Buttons & NR & Sink trap \\
+
+Mark et al. (2020) \cite{markStudyImpactProjectionbased2020} & Italy & Industrial equipment & Controlled Lab & Training & Rule-based & None / Vision-only & Static & No & NR & Lab Exp & No -Buttons & NR & Pneumatic Cylinder \\
+
+Ojer et al. (2020) \cite{ojerProjectionBasedAugmentedReality2020} & Spain & Electronics & Lab Test & Guidance / Instructions & Machine Learning & None / Vision-only & Spatial-adaptive & Op 4.0 & 90 (SUS) & Lab Prototype & No & NR & PCB \\
+
+Rupprecht et al. (2020) \cite{rupprechtInformationProvisionUtilizing2020} & Austria & Aerospace & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Spatial-adaptive & Op 4.0 & NR & Lab Prototype & No - Task recog. & NR & Aircraft Components \\
+
+Serras et al. (2020) \cite{serrasDialogueEnhancedExtended2020} & Spain & Generic / unspecified & User Study & Guidance / Instructions & Rule-based & None / Vision-only & Content-adaptive & Op 4.0 & NR & Industrial Pilot & No -Speech/Voice & NR & Gripper / Panel \\
+
+Smith et al. (2020) \cite{smithAugmentedInstructionsAnalysis2020} & UK & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 1.845 & Lab Exp & No -Touch/Voice & NR & LEGO bricks \\
+
+Vanneste et al. (2020) \cite{vannesteCognitiveSupportAssembly2020} & Belgium & Generic / unspecified & Controlled Lab & Human factors / Safety & Rule-based & Subjective (self-report) & Static & No & NR & Lab Exp & No - Buttons & NR & Light fixture \\
+
+Wang et al. (2020) \cite{wangUsingHeadPointer2020} & China & Generic / unspecified & Controlled Lab & Remote collaboration & Rule-based & Behavioural & Spatial-adaptive & No & NR(51) & Lab Prototype & No - Head / Eye Gaze & NR & LEGO Duplo \\
+
+Wang et al. (2020) \cite{wangUserorientedARAssembly2021} & China & Generic/unspecified & Controlled Lab & Guidance & Rule-based & Subjective (self-report) & Static & No & NR & Lab Prototype & No & NR & Square Plugs/Tubes \\
+
+Chen et al. (2021) \cite{chenProjectionbasedAugmentedReality2021} & China & Generic / unspecified & Tech Validation & Quality / Monitoring & Machine Learning & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & Yes & Pixel Classification & Gear retarder \\
+
+Froschauer et al. (2021) \cite{froschauerHumanCenteredAssemblyWorkplace2021} & Austria & Generic / unspecified & Tech Validation & Guidance / Instructions & Deep Learning & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No & NR & LEGO / Wood \\
+
+Heinz et al. (2021) \cite{heinzDynamicTaskAllocation2021} & Germany & Electronics & Field Study & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Industrial Pilot & No - Pick task recog. & NR & PCB \\
+
+Pimminger et al. (2021) \cite{pimmingerPrototypingAssistiveSystems2021} & Austria & Electronics & Field Study & Guidance / Instructions & Deep Learning & None / Vision-only & Spatial-adaptive & No & NR & Industrial Pilot & No - Activity recog. & NR & Ringbandkern \\
+
+Rupprecht et al. (2021) \cite{rupprechtAdaptiveSpatialAugmented2021} & Austria & Aerospace & Controlled Lab & Guidance / Instructions & Deep Learning & Subjective (self-report) & Spatial-adaptive & No & 32.2 & Lab Prototype & Yes & NR & Fan cowl \\
+
+\bottomrule
+\end{tabularx}
+\end{ThreePartTable}
+\end{sidewaystable*}
+\clearpage
+
+
+\clearpage
+\begin{sidewaystable*}[p]
+\centering
+
+\caption{Extended Overview of SAR Studies with Adaptivity and Operator-Centric Factors (Part 3/4).}
+\label{tab:sar_literature_3}
+
+\begin{ThreePartTable}
+
+\scriptsize
+\setlength{\tabcolsep}{1.8pt}
+\renewcommand{\arraystretch}{1.15}
+
+\begin{tabularx}{\textheight}{@{}%
+  Y{1.7cm} Y{1.3cm} Z Y{1.5cm} Z Y{1.1cm} Y{1.3cm} Z Y{0.9cm} Y{1.1cm} Y{1.1cm} Y{1.2cm} Y{1.2cm} Z @{}}
+
+\toprule
+\textbf{Author (Year)} & \textbf{Country} & \textbf{Domain} & \textbf{Study Type} & \textbf{SAR Focus} &
+\textbf{AI} & \textbf{Cognitive Monitoring} & \textbf{Adaptivity} & \textbf{Op 5.0} &
+\textbf{NASA-TLX} & \textbf{Maturity} & \textbf{Gesture} & \textbf{Occlusion} & \textbf{Product Type} \\
+\midrule
+
+Schmitt et al. (2021) \cite{schmittAssistedHumanRobotInteractionIndustrial2021} & Germany & Generic / unspecified & Tech Validation & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Task/Head Tracking & NR & Toy Truck \\
+
+Schmitt et al. (2021) \cite{schmittAssistedHumanRobotInteractionIndustrial2021a} & Germany & Generic/unspecified & Tech Demo & Guidance & Rule-based & None / Vision-only & Process-adaptive & No & NR & Demonstration & No & NR & Toy Truck \\
+
+Sehr et al. (2021) \cite{sehrModelbasedApproachAdaptive2021} & Germany & Generic / unspecified & Controlled Lab & Adaptive Guidance & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Task recog. & NR & Block Structure \\
+
+Simoes et al. (2021) \cite{simoesCrossRealityWire2021} & Spain & Electronics & Field Study & Training & Rule-based & None / Vision-only & Content-adaptive & Aligned (Implicit) & NR & Industrial Pilot & No - Task recog. & NR & Cabinet \\
+
+Simonetto et al. (2021) \cite{simonettoDigitalAssemblyAssistance2021} & Norway & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Process-adaptive & No & 86.7\% & Lab Prototype & No & NR & LEGO model \\
+
+Wang et al. (2021) \cite{wangMixedRealityPlatform2021} & China & Automotive & Controlled Lab & Remote collaboration & Rule-based & Subjective (self-report) & Process-adaptive & No & 47 & Lab Prototype & No -Head/Eye gaze & NR & Water pump \\
+
+Wang et al. (2021) \cite{wangSHARIDEASSmartCollaborative2021} & China & Generic / unspecified & Controlled Lab & Remote collaboration & Rule-based & Behavioural & Other adaptive & No & NR & Lab Prototype & Yes & Active Apparent & Gear reducer \\
+
+Fang et al. (2022) \cite{fangBarehandGestureOcclusionaware2022} & China & Generic / unspecified & Controlled Lab & Guidance / Instructions & Deep Learning & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & Yes & DNN Mask & Reducer \\
+
+Heinz-Jakobs et al. (2022) \cite{heinz-jakobsPromotingInclusiveWork2022} & Germany & Consumer goods & Field Study & Accessibility / Inclusion & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Industrial Pilot & No - Pick task recog. & NR & Bottle opener \\
+
+Hercog et al. (2022) \cite{hercogProductAssemblyAssistance2022} & Slovenia & Generic / unspecified & Controlled Lab & Guidance / Instructions & Deep Learning & None / Vision-only & Static & No & NR & Prototype & No - PtL/CV & NR & Puzzle \\
+
+Moreira et al. (2022) \cite{moreiraResilientManufacturingUse2022} & UK & Automotive & Controlled Experiment & Training & Rule-based & None / Vision-only & Process-adaptive & Yes & NR & Industrial Pilot & No & NR & EV Battery \\
+
+Rupprecht et al. (2022) \cite{rupprechtAdvancedAdaptiveSpatialAugmented2022} & Austria & Generic / unspecified & Lab Study & Guidance / Instructions & Deep Learning & Subjective (self-report) & Spatial-adaptive & No & 33.2 & Industrial Pilot & Yes & NR & Toy Bricks \\
+
+Wang et al. (2022) \cite{wangNovelARRemote2022} & China & Automotive & Controlled Lab & Remote collaboration & Rule-based & Behavioural & Spatial-adaptive & No & NR & Lab Prototype & Yes & NR & Water Pump \\
+
+Zhang et al. (2022) \cite{zhangProjectedAugmentedReality2022} & China & Aerospace & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & Yes & Thresholding & Aero Blade \\
+
+Zigart et al. (2022) \cite{zigartReadyIndustrialUse2022} & Austria & Electronics & Field/Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 19.38 & Industrial Pilot & No - Buttons & NR & Control Panel \\
+
+Moghaddam et al. (2023) \cite{besharatimoghaddamDatadrivenOperatorFunctional2023} & Belgium & Generic / unspecified & Tech Validation & Guidance / Instructions & Deep Learning & Behavioural & Other adaptive & Yes & NR & Validation & No & NR & Manual Steps \\
+
+Chojecki et al. (2023) \cite{chojeckiAssessingValueMultimodal2023} & Germany & Automotive & Controlled Lab & Guidance / Instructions & Deep Learning & Subjective (self-report) & Static & No & 7.254 (Frus.) & Lab Prototype & Yes (Multimodal) & Segmentation & Car subframe \\
+
+David et al. (2023) \cite{david2023projecting} & Finland & Automotive & Controlled Lab & Guidance / Intent & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Diesel engine \\
+
+Gerhard et al. (2023) \cite{gerhardUniversalIndustrialAugmented2023} & Germany & Generic / unspecified & Tech Validation & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & Yes & NR & Robot chassis \\
+
+Khafaga et al. (2023) \cite{khafagaUnlockingHumanPotential2024} & UK & Automotive & Controlled Lab & Guidance & Rule-based & Subjective (self-report) & Static & Yes & NR & Lab Prototype & No & NR & E-motor \\
+
+Pasaribu et al. (2023) \cite{pasaribuApplicationProjectionMapping2024} & Indonesia & Generic/unspecified & Controlled Lab & Guidance & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - RFID tags & NR & LEGO bricks \\
+
+Riedel et al. (2023) \cite{riedelEvaluatingAugmentedReality2023} & Germany & Consumer electronics & Controlled Lab & Guidance / Instructions & Deep Learning & Subjective (self-report) & Process-adaptive & No & 7.04 & Lab Prototype & No & NR & Tube Lamp \\
+
+Stübl et al. (2023) \cite{stublLessonsLearnedHuman2023} & Austria & Consumer goods (other) & Field Study & Quality / Monitoring & Deep Learning & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No & NR & Furniture \\
+
+Wang et al. (2023) \cite{wangBeHereVRSAR2023} & China & Generic/unspecified & Controlled Lab & Remote collaboration & Rule-based & Subjective (self-report) & Static & No & P(0.594) & Lab Prototype & Yes & NR & 3D parts \\
+
+Wedral et al. (2023) \cite{wedralSpatialAugmentedReality2023} & Austria & Generic/unspecified & Controlled Lab & Safety / Ergonomics & Deep Learning & Subjective (self-report) & Spatial-adaptive & Yes & 21.488 & Factory Lab & No & NR & Clamps \\
+
+Haas et al. (2024) \cite{haasDevelopmentAdaptiveHumancentered2024} & Germany & Industrial equipment & Concept & Ergonomics & Machine Learning & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Fuel Cell \\
+
+\bottomrule
+\end{tabularx}
+\end{ThreePartTable}
+\end{sidewaystable*}
+\clearpage
+
+\begin{sidewaystable}[p]
+\centering
+
+\caption{Extended Overview of SAR Studies with Adaptivity and Operator-Centric Factors (Part 4/4).}
+\label{tab:sar_literature_4}
+
+\begin{ThreePartTable}
+
+\scriptsize
+\setlength{\tabcolsep}{1.8pt}
+\renewcommand{\arraystretch}{1.15}
+
+\begin{tabularx}{\textheight}{@{}%
+  Y{1.7cm} Y{1.3cm} Z Y{1.5cm} Z Y{1.1cm} Y{1.3cm} Z Y{0.9cm} Y{1.1cm} Y{1.1cm} Y{1.2cm} Y{1.2cm} Z @{}}
+
+\toprule
+\textbf{Author (Year)} & \textbf{Country} & \textbf{Domain} & \textbf{Study Type} & \textbf{SAR Focus} &
+\textbf{AI} & \textbf{Cognitive Monitoring} & \textbf{Adaptivity} & \textbf{Op 5.0} &
+\textbf{NASA-TLX} & \textbf{Maturity} & \textbf{Gesture} & \textbf{Occlusion} & \textbf{Product Type} \\
+\midrule
+
+Liang et al. (2024) \cite{liangContextawareCognitiveAssistive2024} & New Zealand & Industrial equipment & Tech Validation & Guidance & Deep Learning & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Activity recog. & NR & Hydraulic valve \\
+
+Lucchese et al. (2024) \cite{lucchesePerformanceDifferencesAgeing2024} & Norway & Generic/unspecified & Controlled Lab & Guidance & Rule-based & None / Vision-only & Process-adaptive & Yes & NR & Lab Exp & No - Task recog. & NR & LEGO models \\
+
+Stoll et al. (2024) \cite{stollAVISARAdaptiveVisual} & Germany & Consumer electronics & Tech Validation & Guidance & Rule-based & None / Vision-only & Multi-adaptive & Yes & NR & Lab Prototype & Yes & NR & Smartphone \\
+
+Wachter et al. (2024) \cite{wachterSpatialAugmentedReality2024} & Germany & Generic/unspecified & Lab Exp & Guidance & Deep Learning & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & Yes & Segmentation Fusion & Picking \\
+
+Wang et al. (2024) \cite{wangExternallyGuidedSpatialAugmented2024} & China & Aerospace & Tech Validation & Guidance & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Aircraft Cabin \\
+
+Hasan et al. (2025) \cite{hasanGestSARGestureControlledSpatial2025} & UK & Generic/unspecified & Controlled Lab & Interactive Guidance & Deep Learning & Subjective (self-report) & Process-adaptive & Yes & 2.10/5 & Lab Prototype & Yes & NR & LEGO Duplo \\
+
+Kelm et al. (2025) \cite{kelmEnhancingAssemblyInstruction2025} & Germany & Industrial equipment & Tech Validation & Instructions & LLM (GPT-4) & None / Vision-only & Content-adaptive & No & NR & Software & No & NR & Fuel Cell \\
+
+Lucchese et al. (2025) \cite{luccheseInvestigatingImpactCognitive2025} & Norway & Generic/unspecified & Controlled Lab & Guidance & Rule-based & Subjective (self-report) & Static & Yes & 43.66 & Lab Prototype & No - Task recog. & NR & LEGO Bricks \\
+
+Pang et al. (2025) \cite{pangProjecTwinDigitalTwinbased2025} & China & Industrial equipment & Tech Validation & Flexible Info & Rule-based & None / Vision-only & Spatial-adaptive & Yes & NR & Simulation & No & Layout optimisation & Thin-walled \\
+
+Seliger et al. (2025) \cite{seligerAcceleratingManualPickandPlace2025} & Germany & Industrial equipment & Tech Validation & Guidance & Deep Learning & None / Vision-only & Spatial-adaptive & No & NR & Proof Concept & No & NR & Ceramics \\
+
+Simeone et al. (2025) \cite{simeoneConceptualisationMultimodalNonintrusive2025} & Italy & Industrial equipment & Controlled Lab & Guidance & GenAI / Hybrid & None / Vision-only & Other adaptive & No & NR & Lab Setup & No & NR & Centrifugal Pump \\
+
+Zhang et al. (2025) \cite{zhangSpatialAugmentedReality2025} & China & Aerospace & Controlled Lab & Guidance & Rule-based & Subjective (self-report) & Process-adaptive & No & 23.16 & Lab Prototype & No & NR & Aircraft Panel \\
+
+\bottomrule
+\end{tabularx}
+\end{ThreePartTable}
+\end{sidewaystable}
+
+
+% \onecolumngrid
+% \begin{landscape}
+% \begin{ThreePartTable}
+
+% \scriptsize
+% \setlength{\tabcolsep}{2.2pt} 
+% \renewcommand{\arraystretch}{1.15}
+% \setcounter{LTchunksize}{200}
+
+% % Column widths optimized for landscape A4/Letter (Total ~24-25cm)
+% \begin{longtable}{@{}%
+%   L{2.8cm} % Author
+%   L{1.4cm} % Country
+%   L{1.0cm} % Year
+%   L{1.8cm} % Domain
+%   L{1.6cm} % Study Type
+%   L{1.8cm} % SAR Focus
+%   L{1.6cm} % AI
+%   L{1.6cm} % Cognitive Monitoring
+%   L{1.7cm} % Adaptivity
+%   L{1.1cm} % Op 5.0
+%   L{1.4cm} % NASA-TLX
+%   L{1.4cm} % Maturity
+%   L{1.8cm} % Gesture
+%   L{1.6cm} % Occlusion
+%   L{1.7cm} % Product Type
+% @{}}
+
+% \caption{Extended Overview of SAR Studies with Adaptivity and Operator-Centric Factors (chronological).}
+% \label{tab:sar_literature_extended}\\
+
+% \toprule
+% \textbf{Author (Year)} & \textbf{Country} & \textbf{Year} & \textbf{Domain} & \textbf{Study Type} & \textbf{SAR Focus} & \textbf{AI} & \textbf{Cognitive Monitoring} & \textbf{Adaptivity} & \textbf{Op 5.0} & \textbf{NASA-TLX} & \textbf{Maturity} & \textbf{Gesture} & \textbf{Occlusion} & \textbf{Product Type} \\
+% \midrule
+% \endfirsthead
+
+% \toprule
+% \textbf{Author (Year)} & \textbf{Country} & \textbf{Year} & \textbf{Domain} & \textbf{Study Type} & \textbf{SAR Focus} & \textbf{AI} & \textbf{Cognitive Monitoring} & \textbf{Adaptivity} & \textbf{Op 5.0} & \textbf{NASA-TLX} & \textbf{Maturity} & \textbf{Gesture} & \textbf{Occlusion} & \textbf{Product Type} \\
+% \midrule
+% \endhead
+
+% \midrule
+% \multicolumn{15}{r}{\textit{Continued on next page}}\\
+% \midrule
+% \endfoot
+
+% \bottomrule
+% \insertTableNotes % Ensures notes appear at the very end of the longtable
+% \endlastfoot
+
+% Büttner et al. (2015) \cite{buttnerExtendingDesignSpace2015} & Germany & 2015 & Generic / unspecified & Prototype & Guidance / Instructions & Rule-based & None / Vision-only & Static & No & NR & Lab Prototype & No - Foot Pedal control & NR & LEGO sets \\
+
+% Funk et al. (2015) \cite{funkUsingInSituProjection2015} & Germany & 2015 & Generic / unspecified & Controlled Lab & Accessibility / Inclusion & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Lab Prototype & No - Pick task recog. & NR & LEGO Duplo \\
+
+% Funk et al. (2015) \cite{funkPickHereInteractive2015} & Germany & 2015 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Spatial-adaptive & No & 20.25 & Lab Prototype & No - Pick task recog. & NR & LEGO bricks \\
+
+% Funk et al. (2015) \cite{funkComparingProjectedInsitu2015} & Germany & 2015 & Generic / unspecified & Field Study & Guidance / Training & Rule-based & Subjective (self-report) & Process-adaptive & Aligned (Implicit) & 44 & Industrial Pilot & No - Pick task recog. & NR & Clamp \\
+
+% Funk et al. (2015) \cite{funkCognitiveAssistanceWorkplace2015} & Germany & 2015 & Automotive & Field Deployment & Quality / Monitoring & Rule-based & None / Vision-only & Process-adaptive & No & NR & Industrial Pilot & No - Task recog. & NR & Engine starter \\
+
+% Funk et al. (2015) \cite{funkBenchmarkInteractiveAugmented2015} & Germany & 2015 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 33.16 (workload) & Lab Prototype & No & NR & LEGO Duplo / Wood \\
+
+% Büttner et al. (2016) \cite{buttnerUsingHeadMountedDisplays2016} & Germany & 2016 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Static & No & NR & Lab Prototype & No & NR & LEGO sets \\
+
+% Fiorentino et al. (2016) \cite{fiorentinoMagicMirrorInterface2016} & Italy & 2016 & Automotive & Field Study & Guidance / Instructions & Rule-based & None / Vision-only & Static & No & NR & Field Study & Yes & Depth Separation & BMW Z4 \\
+
+% Funk et al. (2016) \cite{funkMotionEAPOverview4} & Germany & 2016 & Generic / unspecified & Field Studies & Guidance / Training & Rule-based & None / Vision-only & Process-adaptive & No & NR & Industrial Pilot & No - Activity recog. & NR & Auto parts \\
+
+% Funk et al. (2016) \cite{funkMobileInSituPickbyVision2016} & Germany & 2016 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Spatial-adaptive & No & 25.37 & Lab Prototype & No -Head Tracking & Hardware Avoidance & LEGO bricks \\
+
+% Funk et al. (2016) \cite{funkHapticAuditoryVisual2016} & Germany & 2016 & Generic / unspecified & Controlled Lab & Quality / Monitoring & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Pick task recog. & NR & LEGO Duplo \\
+
+% Funk et al. (2016) \cite{funkInteractiveWorkerAssistance2016} & Germany & 2016 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 28.13 & Lab Prototype & No - Task recog. & NR & LEGO Duplo \\
+
+% Kosch et al. (2016) \cite{koschComparingTactileAuditory2016} & Germany & 2016 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Lab Prototype & No - Pick task recog. & NR & LEGO Duplo \\
+
+% Mura et al. (2016) \cite{muraIntegratedEnvironmentBased2016} & Italy & 2016 & Generic / unspecified & Lab Prototype & Quality / Monitoring & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - weight sensor & NR & Assembly set \\
+
+% Obinata et al. (2016) \cite{obinataPoseEstimationCuboid2016} & Japan & 2016 & Generic / unspecified & Tech Validation & Guidance / Instructions & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & Hand removal algo. & PC / Box \\
+
+% Sand et al. (2016) \cite{sandSmARtAssemblyProjectionBasedAugmented2016} & Germany & 2016 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No - Foot Pedal control & NR & LEGO sets \\
+
+% Xu et al. (2017) \cite{xuFastRegistrationMethodology2017} & China & 2016 & Aerospace & Lab Exp & Guidance / Instructions & Machine Learning & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Aircraft Model \\
+
+% Bosch et al. (2017) \cite{boschEffectsProjectedDisplay2017} & Netherlands & 2017 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 36.8 (workload) & Lab Prototype & No - Task recog. & NR & Abstract Task \\
+
+% Büttner et al. (2017) \cite{buttnerExploringDesignOpportunities2017} & Germany & 2017 & Automotive & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Process-adaptive & No & 31.5, 23.5 (Mental, Physical) & Lab Prototype & Yes & NR & Belt Tensioner \\
+
+% Funk et al. (2017) \cite{funkWorkingAugmentedReality2017} & Germany & 2017 & Automotive & Field Study & Guidance / Instructions & Rule-based & Subjective (self-report) & Process-adaptive & No & 74.34 & Industrial Pilot & No - Pick task recog. & NR & Engine Starters \\
+
+% Kosch et al. (2017) \cite{koschOneSizeDoes2017} & Germany & 2017 & Automotive & Reflection & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Pilot & No & NR & Engine starter \\
+
+% Blattgerste et al. (2018) \cite{blattgersteInSituInstructionsExceed2018} & Germany & 2018 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 29.6 & Lab Prototype & No - Clicker & Occlusion aware & LEGO Duplo \\
+
+% Funk et al. (2018) \cite{funkTeachMeHow2018} & Germany & 2018 & Automotive & Field Study & Training & Rule-based & Subjective (self-report) & Process-adaptive & No & 15.62 & Industrial Pilot & Yes & NR & Engine starter \\
+
+% Kosch et al. (2018) \cite{koschIdentifyingCognitiveAssistance2018} & Germany & 2018 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Physiological (EEG/EDA) & Static & No & 24.17 & Lab Prototype & No - Pick task recog. & NR & LEGO Duplo \\
+
+% Mengoni et al. (2018) \cite{mengoniSpatialAugmentedReality2018} & Italy & 2018 & Consumer Electronics & Controlled Lab & Human factors / Safety & Rule-based & Subjective (self-report) & Process-adaptive & Aligned (Implicit) & 26.17 & Lab Prototype & No & NR & Smartphone \\
+
+% Simoes et al. (2018) \cite{simoesXRealitySystemArchitecture2018} & Spain & 2018 & Electronics & Tech Validation & Guidance / Instructions & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Proof Concept & Yes & NR & Electrical Cabinet \\
+
+% Uva et al. (2018) \cite{uvaEvaluatingEffectivenessSpatial2018} & Italy & 2018 & Automotive & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Static & No & NR & Lab Prototype & No - Joystick & NR & Honda Engine \\
+
+% Alves et al. (2019) \cite{alvesComparingSpatialMobile2019} & Portugal & 2019 & Generic / unspecified & Controlled Lab & Quality / Monitoring & Rule-based & Subjective (self-report) & Process-adaptive & No & 20 & Lab Prototype & No -Wizard of oz & NR & Puzzle \\
+
+% Costa et al. (2019) \cite{costaModelingVideoProjectors2019} & Portugal & 2019 & Automotive & Tech Validation & Training & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Starter Motor \\
+
+% Faccio et al. (2019) \cite{faccioRealtimeAssistanceManual2019} & Italy & 2019 & Automotive & Controlled Lab & Quality / Monitoring & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Activity recog. & NR & Water pump \\
+
+% Haslwanter et al. (2019) \cite{haslwanterLostTranslationMachine2019} & Austria & 2019 & Generic / unspecified & Controlled Lab & Other & Machine Learning & None / Vision-only & Content-adaptive & Op 4.0 & NR & Lab Prototype & No - Button glove & NR & LEGO Duplo \\
+
+% Kosch et al. (2019) \cite{koschYourSkinResists2019} & Germany & 2019 & Generic / unspecified & Controlled Lab & Human factors / Safety & Rule-based & Physiological (EEG/EDA) & Static & No & NR & Lab Prototype & No - Task recog. & NR & LEGO Duplo \\
+
+% Wang et al. (2019) \cite{wangGestureHeadbasedMultimodal2019} & China & 2019 & Automotive & Controlled Lab & Remote collaboration & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & Yes & NR & Water pump \\
+
+% Wilschut et al. (2019) \cite{wilschutEvaluatingLearningApproaches2019} & Netherlands & 2019 & Industrial equipment & Controlled Lab & Training & Rule-based & Subjective (self-report) & Static & No & 28.1 & Lab Prototype & No - Pick Tracking & NR & Pneumatic \\
+
+% Bosch et al. (2020) \cite{boschSpatialAugmentedReality2020} & Netherlands & 2020 & Generic / unspecified & Field Study & Guidance & Training & Rule-based & Subjective (self-report) & Static & Op 4.0 & 31 & Industrial Pilot & No - Bin Picking & NR & Tooling \\
+
+% Büttner et al. (2020) \cite{buttnerAugmentedRealityTraining2020} & Germany & 2020 & Industrial equipment & Controlled Lab & Training & Rule-based & None / Vision-only & Static & No & NR & Lab Prototype & No - Wizard of oz & NR & Pneumatic \\
+
+% Heinz et al. (2020) \cite{heinzExploringUsersEye2020} & Germany & 2020 & Genric/unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Behavioural & Static & No & NR & Lab Prototype & Yes & NR & Toy Gearbox \\
+
+% Horejsi et al. (2020) \cite{horejsiSmartFactorySmart2020} & Czech Republic & 2020 & Generic / unspecified & Controlled Lab & Training & Rule-based & None / Vision-only & Static & No & NR & Industrial Pilot & No - Buttons & NR & Sink trap \\
+
+% Mark et al. (2020) \cite{markStudyImpactProjectionbased2020} & Italy & 2020 & Industrial equipment & Controlled Lab & Training & Rule-based & None / Vision-only & Static & No & NR & Lab Exp & No -Buttons & NR & Pneumatic Cylinder \\
+
+% Ojer et al. (2020) \cite{ojerProjectionBasedAugmentedReality2020} & Spain & 2020 & Electronics & Lab Test & Guidance / Instructions & Machine Learning & None / Vision-only & Spatial-adaptive & Op 4.0 & 90 (SUS) & Lab Prototype & No & NR & PCB \\
+
+% Rupprecht et al. (2020) \cite{rupprechtInformationProvisionUtilizing2020} & Austria & 2020 & Aerospace & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Spatial-adaptive & Op 4.0 & NR & Lab Prototype & No - Task recog. & NR & Aircraft Components \\
+
+% Serras et al. (2020) \cite{serrasDialogueEnhancedExtended2020} & Spain & 2020 & Generic / unspecified & User Study & Guidance / Instructions & Rule-based & None / Vision-only & Content-adaptive & Op 4.0 & NR & Industrial Pilot & No -Speech/Voice & NR & Gripper / Panel \\
+
+% Smith et al. (2020) \cite{smithAugmentedInstructionsAnalysis2020} & United Kingdom & 2020 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 1.845 & Lab Exp & No -Touch/Voice & NR & LEGO bricks \\
+
+% Vanneste et al. (2020) \cite{vannesteCognitiveSupportAssembly2020} & Belgium & 2020 & Generic / unspecified & Controlled Lab & Human factors / Safety & Rule-based & Subjective (self-report) & Static & No & NR & Lab Exp & No - Buttons & NR & Light fixture \\
+
+% Wang et al. (2020) \cite{wangUsingHeadPointer2020} & China & 2020 & Generic / unspecified & Controlled Lab & Remote collaboration & Rule-based & Behavioural & Spatial-adaptive & No & NR(51) & Lab Prototype & No - Head / Eye Gaze & NR & LEGO Duplo \\
+
+% Wang et al. (2020) \cite{wangUserorientedARAssembly2021} & China & 2020 & Generic/unspecified & Controlled Lab & Guidance & Rule-based & Subjective (self-report) & Static & No & NR & Lab Prototype & No & NR & Square Plugs/Tubes \\
+
+% Chen et al. (2021) \cite{chenProjectionbasedAugmentedReality2021} & China & 2021 & Generic / unspecified & Tech Validation & Quality / Monitoring & Machine Learning & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & Yes & Pixel Classification & Gear retarder \\
+
+% Froschauer et al. (2021) \cite{froschauerHumanCenteredAssemblyWorkplace2021} & Austria & 2021 & Generic / unspecified & Tech Validation & Guidance / Instructions & Deep Learning & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No & NR & LEGO / Wood \\
+
+% Heinz et al. (2021) \cite{heinzDynamicTaskAllocation2021} & Germany & 2021 & Electronics & Field Study & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Industrial Pilot & No - Pick task recog. & NR & PCB \\
+
+% Pimminger et al. (2021) \cite{pimmingerPrototypingAssistiveSystems2021} & Austria & 2021 & Electronics & Field Study & Guidance / Instructions & Deep Learning & None / Vision-only & Spatial-adaptive & No & NR & Industrial Pilot & No - Activity recog. & NR & Ringbandkern \\
+
+% Rupprecht et al. (2021) \cite{rupprechtAdaptiveSpatialAugmented2021} & Austria & 2021 & Aerospace & Controlled Lab & Guidance / Instructions & Deep Learning & Subjective (self-report) & Spatial-adaptive & No & 32.2 & Lab Prototype & Yes & NR & Fan cowl \\
+
+% Schmitt et al. (2021) \cite{schmittAssistedHumanRobotInteractionIndustrial2021} & Germany & 2021 & Generic / unspecified & Tech Validation & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Task/Head Tracking & NR & Toy Truck \\
+
+% Schmitt et al. (2021) \cite{schmittAssistedHumanRobotInteractionIndustrial2021a} & Germany & 2021 & Generic/unspecified & Tech Demo & Guidance & Rule-based & None / Vision-only & Process-adaptive & No & NR & Demonstration & No & NR & Toy Truck \\
+
+% Sehr et al. (2021) \cite{sehrModelbasedApproachAdaptive2021} & Germany & 2021 & Generic / unspecified & Controlled Lab & Adaptive Guidance & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Task recog. & NR & Block Structure \\
+
+% Simoes et al. (2021) \cite{simoesCrossRealityWire2021} & Spain & 2021 & Electronics & Field Study & Training & Rule-based & None / Vision-only & Content-adaptive & Aligned (Implicit) & NR & Industrial Pilot & No - Task recog. & NR & Cabinet \\
+
+% Simonetto et al. (2021) \cite{simonettoDigitalAssemblyAssistance2021} & Norway & 2021 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Process-adaptive & No & 86.7\% & Lab Prototype & No & NR & LEGO model \\
+
+% Wang et al. (2021) \cite{wangMixedRealityPlatform2021} & China & 2021 & Automotive & Controlled Lab & Remote collaboration & Rule-based & Subjective (self-report) & Process-adaptive & No & 47 & Lab Prototype & No -Head/Eye gaze & NR & Water pump \\
+
+% Wang et al. (2021) \cite{wangSHARIDEASSmartCollaborative2021} & China & 2021 & Generic / unspecified & Controlled Lab & Remote collaboration & Rule-based & Behavioural & Other adaptive & No & NR & Lab Prototype & Yes & Active Apparent & Gear reducer \\
+
+% Fang et al. (2022) \cite{fangBarehandGestureOcclusionaware2022} & China & 2022 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Deep Learning & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & Yes & DNN Mask & Reducer \\
+
+% Heinz-Jakobs et al. (2022) \cite{heinz-jakobsPromotingInclusiveWork2022} & Germany & 2022 & Consumer goods & Field Study & Accessibility / Inclusion & Rule-based & None / Vision-only & Process-adaptive & Aligned (Implicit) & NR & Industrial Pilot & No - Pick task recog. & NR & Bottle opener \\
+
+% Hercog et al. (2022) \cite{hercogProductAssemblyAssistance2022} & Slovenia & 2022 & Generic / unspecified & Controlled Lab & Guidance / Instructions & Deep Learning & None / Vision-only & Static & No & NR & Prototype & No - PtL/CV & NR & Puzzle \\
+
+% Moreira et al. (2022) \cite{moreiraResilientManufacturingUse2022} & United Kingdom & 2022 & Automotive & Controlled Experiment & Training & Rule-based & None / Vision-only & Process-adaptive & Yes & NR & Industrial Pilot & No & NR & EV Battery \\
+
+% Rupprecht et al. (2022) \cite{rupprechtAdvancedAdaptiveSpatialAugmented2022} & Austria & 2022 & Generic / unspecified & Lab Study & Guidance / Instructions & Deep Learning & Subjective (self-report) & Spatial-adaptive & No & 33.2 & Industrial Pilot & Yes & NR & Toy Bricks \\
+
+% Wang et al. (2022) \cite{wangNovelARRemote2022} & China & 2022 & Automotive & Controlled Lab & Remote collaboration & Rule-based & Behavioural & Spatial-adaptive & No & NR & Lab Prototype & Yes & NR & Water Pump \\
+
+% Zhang et al. (2022) \cite{zhangProjectedAugmentedReality2022} & China & 2022 & Aerospace & Controlled Lab & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & Yes & Thresholding & Aero Blade \\
+
+% Zigart et al. (2022) \cite{zigartReadyIndustrialUse2022} & Austria & 2022 & Electronics & Field/Lab & Guidance / Instructions & Rule-based & Subjective (self-report) & Static & No & 19.38 & Industrial Pilot & No - Buttons & NR & Control Panel \\
+
+% Besharatimoghaddam et al. (2023) \cite{besharatimoghaddamDatadrivenOperatorFunctional2023} & Belgium & 2023 & Generic / unspecified & Tech Validation & Guidance / Instructions & Deep Learning & Behavioural & Other adaptive & Yes & NR & Validation & No & NR & Manual Steps \\
+
+% Chojecki et al. (2023) \cite{chojeckiAssessingValueMultimodal2023} & Germany & 2023 & Automotive & Controlled Lab & Guidance / Instructions & Deep Learning & Subjective (self-report) & Static & No & 7.254 (Frustration) & Lab Prototype & Yes (Multimodal) & Segmentation & Car subframe \\
+
+% David et al. (2023) \cite{david2023projecting} & Finland & 2023 & Automotive & Controlled Lab & Guidance / Intent & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Diesel engine \\
+
+% Gerhard et al. (2023) \cite{gerhardUniversalIndustrialAugmented2023} & Germany & 2023 & Generic / unspecified & Tech Validation & Guidance / Instructions & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & Yes & NR & Robot chassis \\
+
+% Khafaga et al. (2023) \cite{khafagaUnlockingHumanPotential2024} & United Kingdom & 2023 & Automotive & Controlled Lab & Guidance & Rule-based & Subjective (self-report) & Static & Yes & NR & Lab Prototype & No & NR & E-motor \\
+
+% Pasaribu et al. (2023) \cite{pasaribuApplicationProjectionMapping2024} & Indonesia & 2023 & Generic/unspecified & Controlled Lab & Guidance & Rule-based & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - RFID tags & NR & LEGO bricks \\
+
+% Riedel et al. (2023) \cite{riedelEvaluatingAugmentedReality2023} & Germany & 2023 & Consumer electronics & Controlled Lab & Guidance / Instructions & Deep Learning & Subjective (self-report) & Process-adaptive & No & 7.04 & Lab Prototype & No & NR & Tube Lamp \\
+
+% Stübl et al. (2023) \cite{stublLessonsLearnedHuman2023} & Austria & 2023 & Consumer goods (other) & Field Study & Quality / Monitoring & Deep Learning & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No & NR & Furniture \\
+
+% Wang et al. (2023) \cite{wangBeHereVRSAR2023} & China & 2023 & Generic/unspecified & Controlled Lab & Remote collaboration & Rule-based & Subjective (self-report) & Static & No & P(0.594) & Lab Prototype & Yes & NR & 3D parts \\
+
+% Wedral et al. (2023) \cite{wedralSpatialAugmentedReality2023} & Austria & 2023 & Generic/unspecified & Controlled Lab & Safety / Ergonomics & Deep Learning & Subjective (self-report) & Spatial-adaptive & Yes & 21.488 & Factory Lab & No & NR & Clamps \\
+
+% Haas et al. (2024) \cite{haasDevelopmentAdaptiveHumancentered2024} & Germany & 2024 & Industrial equipment & Concept & Ergonomics & Machine Learning & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Fuel Cell \\
+
+% Liang et al. (2024) \cite{liangContextawareCognitiveAssistive2024} & New Zealand & 2024 & Industrial equipment & Tech Validation & Guidance & Deep Learning & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & No - Activity recog. & NR & Hydraulic valve \\
+
+% Lucchese et al. (2024) \cite{lucchesePerformanceDifferencesAgeing2024} & Norway & 2024 & Generic/unspecified & Controlled Lab & Guidance & Rule-based & None / Vision-only & Process-adaptive & Yes & NR & Lab Exp & No - Task recog. & NR & LEGO models \\
+
+% Stoll et al. (2024) \cite{stollAVISARAdaptiveVisual} & Germany & 2024 & Consumer electronics & Tech Validation & Guidance & Rule-based & None / Vision-only & Multi-adaptive & Yes & NR & Lab Prototype & Yes & NR & Smartphone \\
+
+% Wachter et al. (2024) \cite{wachterSpatialAugmentedReality2024} & Germany & 2024 & Generic/unspecified & Lab Exp & Guidance & Deep Learning & None / Vision-only & Process-adaptive & No & NR & Lab Prototype & Yes & SegmentationFusion & Picking \\
+
+% Wang et al. (2024) \cite{wangExternallyGuidedSpatialAugmented2024} & China & 2024 & Aerospace & Tech Validation & Guidance & Rule-based & None / Vision-only & Spatial-adaptive & No & NR & Lab Prototype & No & NR & Aircraft Cabin \\
+
+% Hasan et al. (2025) \cite{hasanGestSARGestureControlledSpatial2025} & United Kingdom & 2025 & Generic/unspecified & Controlled Lab & Interactive Guidance & Deep Learning & Subjective (self-report) & Process-adaptive & Yes & 2.10/5 & Lab Prototype & Yes & NR & LEGO Duplo \\
+
+% Kelm et al. (2025) \cite{kelmEnhancingAssemblyInstruction2025} & Germany & 2025 & Industrial equipment & Tech Validation & Instructions & LLM (GPT-4) & None / Vision-only & Content-adaptive & No & NR & Software & No & NR & Fuel Cell \\
+
+% Lucchese et al. (2025) \cite{luccheseInvestigatingImpactCognitive2025} & Norway & 2025 & Generic/unspecified & Controlled Lab & Guidance & Rule-based & Subjective (self-report) & Static & Yes & 43.66 & Lab Prototype & No - Task recog. & NR & LEGO Bricks \\
+
+% Pang et al. (2025) \cite{pangProjecTwinDigitalTwinbased2025} & China & 2025 & Industrial equipment & Tech Validation & Flexible Info & Rule-based & None / Vision-only & Spatial-adaptive & Yes & NR & Simulation & No & Layout optimisation & Thin-walled \\
+
+% Seliger et al. (2025) \cite{seligerAcceleratingManualPickandPlace2025} & Germany & 2025 & Industrial equipment & Tech Validation & Guidance & Deep Learning & None / Vision-only & Spatial-adaptive & No & NR & Proof Concept & No & NR & Ceramics \\
+
+% Simeone et al. (2025) \cite{simeoneConceptualisationMultimodalNonintrusive2025} & Italy & 2025 & Industrial equipment & Controlled Lab & Guidance & GenAI/LLM/Hybrid & None / Vision-only & Other adaptive & No & NR & Lab Setup & No & NR & Centrifugal Pump \\
+
+% Zhang et al. (2025) \cite{zhangSpatialAugmentedReality2025} & China & 2025 & Aerospace & Controlled Lab & Guidance & Rule-based & Subjective (self-report) & Process-adaptive & No & 23.16 & Lab Prototype & No & NR & Aircraft Panel \\
+
+% \end{longtable}
+
+% \vspace{-5mm}
+% \begin{TableNotes}
+% \footnotesize
+% \item \textit{Note:} NR, not reported.
+% \end{TableNotes}
+% \end{ThreePartTable}
+% \end{landscape}
+% \twocolumngrid
+
+
+\end{document}
+
+\endinput
+%%
+%% End of file `elsarticle-template-harv.tex'.
